@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_fragment_stats.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_stats.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/menu_bottom_navigation_menu.xml.flat",
+        "source": "com.bytetrack.app-main-88:/menu/bottom_navigation_menu.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_ic_stats.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/ic_stats.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_ic_person.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/ic_person.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_fragment_log_food.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_log_food.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_fragment_home.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_scanner_overlay.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/scanner_overlay.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/xml_data_extraction_rules.xml.flat",
+        "source": "com.bytetrack.app-main-88:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_fragment_profile.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_activity_food_details.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/activity_food_details.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_ic_home.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_ic_add.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/drawable_ic_launcher.xml.flat",
+        "source": "com.bytetrack.app-main-88:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/xml_backup_rules.xml.flat",
+        "source": "com.bytetrack.app-main-88:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_activity_barcode_scanner.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/activity_barcode_scanner.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-merged_res-86:/layout_activity_main.xml.flat",
+        "source": "com.bytetrack.app-main-88:/layout/activity_main.xml"
+    }
+]

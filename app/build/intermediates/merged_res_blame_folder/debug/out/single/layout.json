@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/fragment_profile.xml",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/fragment_home.xml",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/fragment_log_food.xml",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_log_food.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/fragment_stats.xml",
+        "source": "com.bytetrack.app-main-88:/layout/fragment_stats.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/activity_food_details.xml",
+        "source": "com.bytetrack.app-main-88:/layout/activity_food_details.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/activity_barcode_scanner.xml",
+        "source": "com.bytetrack.app-main-88:/layout/activity_barcode_scanner.xml"
+    },
+    {
+        "merged": "com.bytetrack.app-mergeDebugResources-85:/layout/activity_main.xml",
+        "source": "com.bytetrack.app-main-88:/layout/activity_main.xml"
+    }
+]

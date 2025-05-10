@@ -1,0 +1,366 @@
+F:\ByteTrack\app\build.gradle:15: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 34
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application runs on a version of Android that is more recent than
+   your targetSdkVersion specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdkVersion
+   is less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+F:\ByteTrack\app\build.gradle:53: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.16.0 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.12.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:54: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.0 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:55: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.12.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.11.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:56: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1 [GradleDependency]
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:59: Warning: A newer version of androidx.compose:compose-bom than 2023.10.01 is available: 2025.05.00 [GradleDependency]
+    implementation platform('androidx.compose:compose-bom:2023.10.01')
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:65: Warning: A newer version of androidx.activity:activity-compose than 1.8.2 is available: 1.10.1 [GradleDependency]
+    implementation 'androidx.activity:activity-compose:1.8.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:66: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.6.2 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:67: Warning: A newer version of androidx.navigation:navigation-compose than 2.7.6 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.navigation:navigation-compose:2.7.6'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:68: Warning: A newer version of androidx.compose.runtime:runtime-livedata than 1.5.4 is available: 1.8.1 [GradleDependency]
+    implementation 'androidx.compose.runtime:runtime-livedata:1.5.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:75: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.6.2 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:76: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.6.2 is available: 2.9.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.2'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:79: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.7.1 [GradleDependency]
+    implementation 'androidx.room:room-runtime:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:80: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.7.1 [GradleDependency]
+    implementation 'androidx.room:room-ktx:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:81: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.7.1 [GradleDependency]
+    kapt 'androidx.room:room-compiler:2.6.1'
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:89: Warning: A newer version of com.squareup.okhttp3:logging-interceptor than 4.11.0 is available: 4.12.0 [GradleDependency]
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.11.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:96: Warning: A newer version of com.google.mlkit:barcode-scanning than 17.2.0 is available: 17.3.0 [GradleDependency]
+    implementation 'com.google.mlkit:barcode-scanning:17.2.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:97: Warning: A newer version of androidx.camera:camera-camera2 than 1.3.1 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-camera2:1.3.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:98: Warning: A newer version of androidx.camera:camera-lifecycle than 1.3.1 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-lifecycle:1.3.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:99: Warning: A newer version of androidx.camera:camera-view than 1.3.1 is available: 1.4.2 [GradleDependency]
+    implementation 'androidx.camera:camera-view:1.3.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:102: Warning: A newer version of com.google.android.gms:play-services-fitness than 21.1.0 is available: 21.2.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-fitness:21.1.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:103: Warning: A newer version of com.google.android.gms:play-services-auth than 20.7.0 is available: 21.3.0 [GradleDependency]
+    implementation 'com.google.android.gms:play-services-auth:20.7.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:110: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.2.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\build.gradle:111: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.6.1 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+F:\ByteTrack\app\src\main\AndroidManifest.xml:37: Warning: Expecting android:screenOrientation="unspecified" or "fullSensor" for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices [LockedOrientationActivity]
+            android:screenOrientation="portrait"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "LockedOrientationActivity":
+   The <activity> element should not be locked to any orientation so that
+   users can take advantage of the multi-window environments and larger
+   screens available on Android. To fix the issue, consider declaring the
+   corresponding activity element with `screenOrientation="unspecified"or
+   "fullSensor"` attribute.
+
+   https://developer.android.com/topic/arc/window-management
+
+F:\ByteTrack\app\src\main\res\layout\activity_barcode_scanner.xml:42: Error: Must use app:tint instead of android:tint [UseAppTint from androidx.appcompat]
+        android:tint="@color/white"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseAppTint":
+   ImageView or ImageButton uses android:tint instead of app:tint
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+F:\ByteTrack\app\src\main\res\drawable-v24: Warning: This folder configuration (v24) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into drawable. [ObsoleteSdkInt]
+F:\ByteTrack\app\src\main\res\mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+F:\ByteTrack\app\build.gradle:81: Warning: This library supports using KSP instead of kapt, which greatly improves performance. Learn more: https://developer.android.com/studio/build/migrate-to-ksp [KaptUsageInsteadOfKsp]
+    kapt 'androidx.room:room-compiler:2.6.1'
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "KaptUsageInsteadOfKsp":
+   KSP is a more efficient replacement for kapt. For libraries that support
+   both, KSP should be used to improve build times.
+
+   https://developer.android.com/studio/build/migrate-to-ksp
+
+F:\ByteTrack\app\src\main\res\layout\activity_barcode_scanner.xml:2: Warning: The resource R.layout.activity_barcode_scanner appears to be unused [UnusedResources]
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:2: Warning: The resource R.layout.activity_food_details appears to be unused [UnusedResources]
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\layout\activity_main.xml:2: Warning: The resource R.layout.activity_main appears to be unused [UnusedResources]
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\menu\bottom_navigation_menu.xml:2: Warning: The resource R.menu.bottom_navigation_menu appears to be unused [UnusedResources]
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+^
+F:\ByteTrack\app\src\main\res\values\colors.xml:5: Warning: The resource R.color.primary_light appears to be unused [UnusedResources]
+    <color name="primary_light">#C8E6C9</color>
+           ~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:7: Warning: The resource R.color.primary_text appears to be unused [UnusedResources]
+    <color name="primary_text">#212121</color>
+           ~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:8: Warning: The resource R.color.secondary_text appears to be unused [UnusedResources]
+    <color name="secondary_text">#757575</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:11: Warning: The resource R.color.divider appears to be unused [UnusedResources]
+    <color name="divider">#BDBDBD</color>
+           ~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:12: Warning: The resource R.color.error appears to be unused [UnusedResources]
+    <color name="error">#F44336</color>
+           ~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:13: Warning: The resource R.color.success appears to be unused [UnusedResources]
+    <color name="success">#4CAF50</color>
+           ~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:14: Warning: The resource R.color.warning appears to be unused [UnusedResources]
+    <color name="warning">#FF9800</color>
+           ~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:18: Warning: The resource R.color.dark_surface appears to be unused [UnusedResources]
+    <color name="dark_surface">#1E1E1E</color>
+           ~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:22: Warning: The resource R.color.dark_text_primary appears to be unused [UnusedResources]
+    <color name="dark_text_primary">#FFFFFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\colors.xml:23: Warning: The resource R.color.dark_text_secondary appears to be unused [UnusedResources]
+    <color name="dark_text_secondary">#B0B0B0</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\drawable\ic_add.xml:1: Warning: The resource R.drawable.ic_add appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\drawable\ic_home.xml:1: Warning: The resource R.drawable.ic_home appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\drawable\ic_person.xml:1: Warning: The resource R.drawable.ic_person appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\drawable\ic_stats.xml:1: Warning: The resource R.drawable.ic_stats appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\drawable\scanner_overlay.xml:2: Warning: The resource R.drawable.scanner_overlay appears to be unused [UnusedResources]
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+^
+F:\ByteTrack\app\src\main\res\values\strings.xml:18: Warning: The resource R.string.settings appears to be unused [UnusedResources]
+    <string name="settings">Settings</string>
+            ~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:21: Warning: The resource R.string.light_mode appears to be unused [UnusedResources]
+    <string name="light_mode">Light Mode</string>
+            ~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:22: Warning: The resource R.string.system_default appears to be unused [UnusedResources]
+    <string name="system_default">System Default</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:26: Warning: The resource R.string.set_goal appears to be unused [UnusedResources]
+    <string name="set_goal">Set Goal</string>
+            ~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:31: Warning: The resource R.string.protein appears to be unused [UnusedResources]
+    <string name="protein">Protein</string>
+            ~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:32: Warning: The resource R.string.carbs appears to be unused [UnusedResources]
+    <string name="carbs">Carbs</string>
+            ~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:33: Warning: The resource R.string.fat appears to be unused [UnusedResources]
+    <string name="fat">Fat</string>
+            ~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:37: Warning: The resource R.string.save appears to be unused [UnusedResources]
+    <string name="save">Save</string>
+            ~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:38: Warning: The resource R.string.cancel appears to be unused [UnusedResources]
+    <string name="cancel">Cancel</string>
+            ~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:39: Warning: The resource R.string.delete appears to be unused [UnusedResources]
+    <string name="delete">Delete</string>
+            ~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\values\strings.xml:40: Warning: The resource R.string.edit appears to be unused [UnusedResources]
+    <string name="edit">Edit</string>
+            ~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:65: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+F:\ByteTrack\app\src\main\java\com\bytetrack\ui\fragments\HomeFragment.kt:46: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            binding.waterIntakeValue.text = "${waterAmount ?: 0} ml"
+                                            ~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\java\com\bytetrack\ui\fragments\HomeFragment.kt:46: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            binding.waterIntakeValue.text = "${waterAmount ?: 0} ml"
+                                                                ~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+F:\ByteTrack\app\src\main\res\layout\activity_barcode_scanner.xml:27: Warning: Hardcoded string "Position the barcode inside the box", should use @string resource [HardcodedText]
+        android:text="Position the barcode inside the box"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_barcode_scanner.xml:40: Warning: Hardcoded string "Close", should use @string resource [HardcodedText]
+        android:contentDescription="Close"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:18: Warning: Hardcoded string "Back", should use @string resource [HardcodedText]
+            android:contentDescription="Back"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:107: Warning: Hardcoded string "Nutrition Facts", should use @string resource [HardcodedText]
+                    android:text="Nutrition Facts"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:146: Warning: Hardcoded string "Servings", should use @string resource [HardcodedText]
+            android:hint="Servings"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:163: Warning: Hardcoded string "Meal Type", should use @string resource [HardcodedText]
+            android:text="Meal Type"
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:184: Warning: Hardcoded string "Breakfast", should use @string resource [HardcodedText]
+                android:text="Breakfast" />
+                ~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:191: Warning: Hardcoded string "Lunch", should use @string resource [HardcodedText]
+                android:text="Lunch" />
+                ~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:198: Warning: Hardcoded string "Dinner", should use @string resource [HardcodedText]
+                android:text="Dinner" />
+                ~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:205: Warning: Hardcoded string "Snack", should use @string resource [HardcodedText]
+                android:text="Snack" />
+                ~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\activity_food_details.xml:213: Warning: Hardcoded string "Add Food", should use @string resource [HardcodedText]
+            android:text="Add Food"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_profile.xml:25: Warning: Hardcoded string "Name", should use @string resource [HardcodedText]
+            android:hint="Name">
+            ~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_profile.xml:38: Warning: Hardcoded string "Age", should use @string resource [HardcodedText]
+            android:hint="Age">
+            ~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_profile.xml:52: Warning: Hardcoded string "Height (cm)", should use @string resource [HardcodedText]
+            android:hint="Height (cm)">
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_profile.xml:66: Warning: Hardcoded string "Weight (kg)", should use @string resource [HardcodedText]
+            android:hint="Weight (kg)">
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_profile.xml:80: Warning: Hardcoded string "Daily Calorie Goal", should use @string resource [HardcodedText]
+            android:hint="Daily Calorie Goal">
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_stats.xml:24: Warning: Hardcoded string "Day", should use @string resource [HardcodedText]
+            android:text="Day" />
+            ~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_stats.xml:29: Warning: Hardcoded string "Week", should use @string resource [HardcodedText]
+            android:text="Week" />
+            ~~~~~~~~~~~~~~~~~~~
+F:\ByteTrack\app\src\main\res\layout\fragment_stats.xml:34: Warning: Hardcoded string "Month", should use @string resource [HardcodedText]
+            android:text="Month" />
+            ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+1 errors, 80 warnings
