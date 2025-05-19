@@ -52,6 +52,14 @@
             android:name="com.bytetrack.ui.FoodDetailsActivity"
             android:label="Food Details"
             android:parentActivityName="com.bytetrack.ui.MainActivity" />
+        <activity
+            android:name="com.bytetrack.ui.DrinkLogActivity"
+            android:label="Log Drink"
+            android:parentActivityName="com.bytetrack.ui.MainActivity" />
+        <activity
+            android:name="com.bytetrack.ui.LogFoodActivity"
+            android:label="Log Food"
+            android:parentActivityName="com.bytetrack.ui.MainActivity" />
 
         <!--
         Service for holding metadata. Cannot be instantiated.

@@ -1,10 +1,12 @@
 package com.bytetrack.ui.screens.home
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -13,6 +15,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DirectionsRun
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.LocalDining
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material3.*
@@ -35,7 +38,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bytetrack.R
 import com.bytetrack.data.model.UserProfile
+import com.bytetrack.ui.theme.AnimationDuration
+import com.bytetrack.ui.theme.StandardEasing
 import com.bytetrack.ui.viewmodels.HomeViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.min
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -44,6 +51,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     onLogMealClick: () -> Unit = {},
     onLogDrinkClick: () -> Unit = {},
+    onError: (String) -> Unit = {},
     viewModel: HomeViewModel = viewModel()
 ) {
     // Refresh data when the screen is shown
@@ -55,11 +63,17 @@ fun HomeScreen(
     val caloriesState = viewModel.todayCalories.observeAsState()
     val waterIntakeState = viewModel.waterIntake.observeAsState()
     val userProfileState = viewModel.userProfile.observeAsState()
+    val weeklyProgressState = viewModel.weeklyProgress.observeAsState(emptyList())
+    val quickAddItemsState = viewModel.quickAddItems.observeAsState(emptyList())
+    val goalCompletedState = viewModel.goalCompleted.observeAsState(false)
     
     // Set safe values regardless of null
     val calories = caloriesState.value ?: 0
     val waterIntake = waterIntakeState.value ?: 0f
     val profile = userProfileState.value ?: UserProfile(dailyCalorieGoal = 2000)
+    val weeklyProgress = weeklyProgressState.value
+    val quickAddItems = quickAddItemsState.value
+    val goalCompleted = goalCompletedState.value
     val dailyGoal = profile.dailyCalorieGoal
     val caloriesRemaining = dailyGoal - calories
     
@@ -71,6 +85,18 @@ fun HomeScreen(
     // Animated progress
     val animatedCalorieProgress = remember { Animatable(0f) }
     val animatedWaterProgress = remember { Animatable(0f) }
+    
+    // Dialog states
+    var showGoalSettingDialog by remember { mutableStateOf(false) }
+    var showGoalRewardDialog by remember { mutableStateOf(false) }
+    
+    // Show goal reached dialog when goal is completed 
+    LaunchedEffect(goalCompleted) {
+        if (goalCompleted) {
+            delay(500) // Small delay for better UX
+            showGoalRewardDialog = true
+        }
+    }
     
     // Start animations when values change
     LaunchedEffect(calorieProgress) {
@@ -115,12 +141,60 @@ fun HomeScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             // Welcome header
-            Text(
-                text = "Today's Progress",
-                style = MaterialTheme.typography.headlineMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onPrimary,
-                modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Today's Progress",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.padding(top = 8.dp, bottom = 24.dp)
+                )
+                
+                // Goal edit button
+                IconButton(
+                    onClick = { showGoalSettingDialog = true },
+                    modifier = Modifier.padding(end = 8.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Edit Goal",
+                        tint = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+            }
+            
+            // Weekly Progress Chart Card
+            if (weeklyProgress.isNotEmpty()) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surface
+                    )
+                ) {
+                    WeeklyProgressChart(
+                        weeklyData = weeklyProgress
+                    )
+                }
+            }
+            
+            // Quick add panel
+            QuickAddPanel(
+                quickAddItems = quickAddItems,
+                onAddItem = { 
+                    // In a real app, this would log the item
+                    // For now just show a toast
+                },
+                onAddCustomFood = onLogMealClick,
+                onAddCustomDrink = onLogDrinkClick,
+                modifier = Modifier.padding(bottom = 16.dp)
             )
             
             // Nutrition summary card
@@ -396,6 +470,24 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
         }
     }
+    
+    // Goal setting dialog
+    if (showGoalSettingDialog) {
+        GoalSettingDialog(
+            currentGoal = dailyGoal,
+            onDismiss = { showGoalSettingDialog = false },
+            onSetGoal = { newGoal ->
+                viewModel.updateCalorieGoal(newGoal)
+            }
+        )
+    }
+    
+    // Goal completion reward dialog
+    GoalRewardAnimation(
+        show = showGoalRewardDialog,
+        message = "Daily Goal Reached!",
+        onDismiss = { showGoalRewardDialog = false }
+    )
 }
 
 @Composable

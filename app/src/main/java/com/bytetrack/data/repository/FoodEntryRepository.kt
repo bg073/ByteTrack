@@ -21,6 +21,10 @@ class FoodEntryRepository(private val foodEntryDao: FoodEntryDao) {
         return foodEntryDao.getFoodEntriesForDateRange(startOfDay, endOfDay)
     }
     
+    fun getFoodEntriesForDateRange(startDate: Date, endDate: Date): LiveData<List<FoodEntry>> {
+        return foodEntryDao.getFoodEntriesForDateRange(startDate, endDate)
+    }
+    
     fun getFoodEntriesForDateAndMealType(date: Date, mealType: MealType): LiveData<List<FoodEntry>> {
         val startOfDay = DateUtils.getStartOfDay(date)
         val endOfDay = DateUtils.getEndOfDay(date)

@@ -145,7 +145,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
 
   @Override
   public Object insertUserProfile(final UserProfile userProfile,
-      final Continuation<? super Unit> $completion) {
+      final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -159,12 +159,12 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object updateUserProfile(final UserProfile userProfile,
-      final Continuation<? super Unit> $completion) {
+      final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -178,11 +178,11 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           __db.endTransaction();
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
-  public Object updateTheme(final String theme, final Continuation<? super Unit> $completion) {
+  public Object updateTheme(final String theme, final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -207,12 +207,12 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           __preparedStmtOfUpdateTheme.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
   public Object updatePremiumStatus(final boolean isPremium,
-      final Continuation<? super Unit> $completion) {
+      final Continuation<? super Unit> arg1) {
     return CoroutinesRoom.execute(__db, true, new Callable<Unit>() {
       @Override
       @NonNull
@@ -234,7 +234,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           __preparedStmtOfUpdatePremiumStatus.release(_stmt);
         }
       }
-    }, $completion);
+    }, arg1);
   }
 
   @Override
@@ -323,7 +323,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
   }
 
   @Override
-  public Object getUserProfileSync(final Continuation<? super UserProfile> $completion) {
+  public Object getUserProfileSync(final Continuation<? super UserProfile> arg0) {
     final String _sql = "SELECT * FROM user_profile WHERE id = 1";
     final RoomSQLiteQuery _statement = RoomSQLiteQuery.acquire(_sql, 0);
     final CancellationSignal _cancellationSignal = DBUtil.createCancellationSignal();
@@ -401,7 +401,7 @@ public final class UserProfileDao_Impl implements UserProfileDao {
           _statement.release();
         }
       }
-    }, $completion);
+    }, arg0);
   }
 
   @Override

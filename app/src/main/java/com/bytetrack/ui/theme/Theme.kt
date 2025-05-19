@@ -9,6 +9,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -41,7 +42,10 @@ private val LightColors = lightColorScheme(
     error = Color(0xFFE53935),        // Error Red
     onError = Color.White,
     errorContainer = Color(0xFFFFDAD6),
-    onErrorContainer = Color(0xFF410002)
+    onErrorContainer = Color(0xFF410002),
+    
+    outline = Color(0xFFBDBDBD),
+    outlineVariant = Color(0xFFE0E0E0)
 )
 
 private val DarkColors = darkColorScheme(
@@ -68,7 +72,10 @@ private val DarkColors = darkColorScheme(
     error = Color(0xFFFFB4AB),        // Lighter Error Red
     onError = Color(0xFF690005),
     errorContainer = Color(0xFF93000A),
-    onErrorContainer = Color(0xFFFFDAD6)
+    onErrorContainer = Color(0xFFFFDAD6),
+    
+    outline = Color(0xFF757575),
+    outlineVariant = Color(0xFF424242)
 )
 
 @Composable
@@ -86,6 +93,9 @@ fun ByteTrackTheme(
         darkTheme -> DarkColors
         else -> LightColors
     }
+    
+    val spacing = Spacing()
+    
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -95,9 +105,23 @@ fun ByteTrackTheme(
         }
     }
 
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+    // Provide spacing to entire app via CompositionLocalProvider
+    CompositionLocalProvider(
+        LocalSpacing provides spacing
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = Typography,
+            content = content
+        )
+    }
+}
+
+/**
+ * Retrieve spacing values from the current theme
+ */
+object ByteTrackTheme {
+    val spacing: Spacing
+        @Composable
+        get() = LocalSpacing.current
 } 

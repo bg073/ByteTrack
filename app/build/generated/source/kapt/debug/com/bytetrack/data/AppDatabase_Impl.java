@@ -17,6 +17,8 @@ import com.bytetrack.data.dao.FoodDao;
 import com.bytetrack.data.dao.FoodDao_Impl;
 import com.bytetrack.data.dao.FoodEntryDao;
 import com.bytetrack.data.dao.FoodEntryDao_Impl;
+import com.bytetrack.data.dao.GoalHistoryDao;
+import com.bytetrack.data.dao.GoalHistoryDao_Impl;
 import com.bytetrack.data.dao.UserProfileDao;
 import com.bytetrack.data.dao.UserProfileDao_Impl;
 import java.lang.Class;
@@ -43,18 +45,21 @@ public final class AppDatabase_Impl extends AppDatabase {
 
   private volatile UserProfileDao _userProfileDao;
 
+  private volatile GoalHistoryDao _goalHistoryDao;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `foods` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `barcode` TEXT, `calories` INTEGER NOT NULL, `protein` REAL NOT NULL, `carbs` REAL NOT NULL, `fat` REAL NOT NULL, `servingSize` REAL NOT NULL, `servingUnit` TEXT NOT NULL, `imageUrl` TEXT, `isFavorite` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `food_entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `foodId` INTEGER NOT NULL, `date` INTEGER NOT NULL, `mealType` TEXT NOT NULL, `servings` REAL NOT NULL, `notes` TEXT, FOREIGN KEY(`foodId`) REFERENCES `foods`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE TABLE IF NOT EXISTS `drink_entries` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `date` INTEGER NOT NULL, `type` TEXT NOT NULL, `amount` REAL NOT NULL, `calories` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `user_profile` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `age` INTEGER NOT NULL, `gender` TEXT NOT NULL, `height` REAL NOT NULL, `weight` REAL NOT NULL, `activityLevel` TEXT NOT NULL, `dailyCalorieGoal` INTEGER NOT NULL, `dailyProteinGoal` INTEGER NOT NULL, `dailyCarbsGoal` INTEGER NOT NULL, `dailyFatGoal` INTEGER NOT NULL, `dailyWaterGoal` INTEGER NOT NULL, `isPremium` INTEGER NOT NULL, `theme` TEXT NOT NULL, PRIMARY KEY(`id`))");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `goal_history` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `goalType` TEXT NOT NULL, `previousValue` INTEGER NOT NULL, `newValue` INTEGER NOT NULL, `date` INTEGER NOT NULL, `achieved` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '29b0024992cd632d3df67928f3560679')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2eec7fd3dc0c67b68908232d6f7f2e5d')");
       }
 
       @Override
@@ -63,6 +68,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         db.execSQL("DROP TABLE IF EXISTS `food_entries`");
         db.execSQL("DROP TABLE IF EXISTS `drink_entries`");
         db.execSQL("DROP TABLE IF EXISTS `user_profile`");
+        db.execSQL("DROP TABLE IF EXISTS `goal_history`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -184,9 +190,25 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoUserProfile + "\n"
                   + " Found:\n" + _existingUserProfile);
         }
+        final HashMap<String, TableInfo.Column> _columnsGoalHistory = new HashMap<String, TableInfo.Column>(6);
+        _columnsGoalHistory.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsGoalHistory.put("goalType", new TableInfo.Column("goalType", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsGoalHistory.put("previousValue", new TableInfo.Column("previousValue", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsGoalHistory.put("newValue", new TableInfo.Column("newValue", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsGoalHistory.put("date", new TableInfo.Column("date", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsGoalHistory.put("achieved", new TableInfo.Column("achieved", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysGoalHistory = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesGoalHistory = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoGoalHistory = new TableInfo("goal_history", _columnsGoalHistory, _foreignKeysGoalHistory, _indicesGoalHistory);
+        final TableInfo _existingGoalHistory = TableInfo.read(db, "goal_history");
+        if (!_infoGoalHistory.equals(_existingGoalHistory)) {
+          return new RoomOpenHelper.ValidationResult(false, "goal_history(com.bytetrack.data.model.GoalHistory).\n"
+                  + " Expected:\n" + _infoGoalHistory + "\n"
+                  + " Found:\n" + _existingGoalHistory);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "29b0024992cd632d3df67928f3560679", "13a727ce01c91992b7e8b9c95a9d456e");
+    }, "2eec7fd3dc0c67b68908232d6f7f2e5d", "703a1812cf04b84486ee3f649e78ad16");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -197,7 +219,7 @@ public final class AppDatabase_Impl extends AppDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "foods","food_entries","drink_entries","user_profile");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "foods","food_entries","drink_entries","user_profile","goal_history");
   }
 
   @Override
@@ -217,6 +239,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       _db.execSQL("DELETE FROM `food_entries`");
       _db.execSQL("DELETE FROM `drink_entries`");
       _db.execSQL("DELETE FROM `user_profile`");
+      _db.execSQL("DELETE FROM `goal_history`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -238,6 +261,7 @@ public final class AppDatabase_Impl extends AppDatabase {
     _typeConvertersMap.put(FoodEntryDao.class, FoodEntryDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(DrinkEntryDao.class, DrinkEntryDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(UserProfileDao.class, UserProfileDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(GoalHistoryDao.class, GoalHistoryDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -308,6 +332,20 @@ public final class AppDatabase_Impl extends AppDatabase {
           _userProfileDao = new UserProfileDao_Impl(this);
         }
         return _userProfileDao;
+      }
+    }
+  }
+
+  @Override
+  public GoalHistoryDao goalHistoryDao() {
+    if (_goalHistoryDao != null) {
+      return _goalHistoryDao;
+    } else {
+      synchronized(this) {
+        if(_goalHistoryDao == null) {
+          _goalHistoryDao = new GoalHistoryDao_Impl(this);
+        }
+        return _goalHistoryDao;
       }
     }
   }

@@ -2,8 +2,14 @@ package com.bytetrack
 
 import android.app.Application
 import android.util.Log
+import com.bytetrack.utils.NetworkConnectivityManager
 
 class ByteTrackApplication : Application() {
+    
+    // Lazy initialized network connectivity manager
+    val networkConnectivityManager by lazy {
+        NetworkConnectivityManager.getInstance(this)
+    }
     
     companion object {
         private const val TAG = "ByteTrackApplication"
@@ -16,6 +22,7 @@ class ByteTrackApplication : Application() {
         instance = this
         Log.d(TAG, "ByteTrack application started")
         
-        // Initialize components here
+        // Initialize the network connectivity manager
+        networkConnectivityManager
     }
 } 

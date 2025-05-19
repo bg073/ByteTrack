@@ -34,7 +34,8 @@ import com.bytetrack.ui.viewmodels.StatsViewModel
 @Composable
 fun StatsScreen(
     modifier: Modifier = Modifier,
-    viewModel: StatsViewModel = viewModel()
+    viewModel: StatsViewModel = viewModel(),
+    onError: (String) -> Unit = {}
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     

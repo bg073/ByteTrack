@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-47:12
-INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:2:1-57:12
 MERGED from [androidx.databinding:databinding-adapters:8.2.2] C:\Users\robro\.gradle\caches\transforms-4\55f1046bfed4d0afdb610267a3a9abf3\transformed\databinding-adapters-8.2.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-ktx:8.2.2] C:\Users\robro\.gradle\caches\transforms-4\1f18103c49fd758015d1f0466ac10f9c\transformed\jetified-databinding-ktx-8.2.2\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.databinding:databinding-runtime:8.2.2] C:\Users\robro\.gradle\caches\transforms-4\c06dfe46ead3143af700b1308d7555c4\transformed\databinding-runtime-8.2.2\AndroidManifest.xml:2:1-7:12
@@ -165,8 +165,8 @@ ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:12:5-79
 	android:name
 		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:12:22-76
 application
-ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:14:5-45:19
-INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:14:5-45:19
+ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:14:5-55:19
+INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml:14:5-55:19
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\robro\.gradle\caches\transforms-4\f04cd6244f4b9203b834102570208274\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\robro\.gradle\caches\transforms-4\f04cd6244f4b9203b834102570208274\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\robro\.gradle\caches\transforms-4\86bfb9c6cbf6dcc0f919c8a4c2bdee9a\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -273,6 +273,22 @@ ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:40:9-43:61
 		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:42:13-41
 	android:name
 		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:41:13-51
+activity#com.bytetrack.ui.DrinkLogActivity
+ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:45:9-48:61
+	android:parentActivityName
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:48:13-58
+	android:label
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:47:13-38
+	android:name
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:46:13-48
+activity#com.bytetrack.ui.LogFoodActivity
+ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:50:9-53:61
+	android:parentActivityName
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:53:13-58
+	android:label
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:52:13-37
+	android:name
+		ADDED from F:\ByteTrack\app\src\main\AndroidManifest.xml:51:13-47
 uses-sdk
 INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from F:\ByteTrack\app\src\main\AndroidManifest.xml

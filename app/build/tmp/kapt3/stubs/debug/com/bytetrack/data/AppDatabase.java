@@ -1,12 +1,14 @@
 package com.bytetrack.data;
 
-@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000&\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\b\'\u0018\u0000 \u000b2\u00020\u0001:\u0001\u000bB\u0005\u00a2\u0006\u0002\u0010\u0002J\b\u0010\u0003\u001a\u00020\u0004H&J\b\u0010\u0005\u001a\u00020\u0006H&J\b\u0010\u0007\u001a\u00020\bH&J\b\u0010\t\u001a\u00020\nH&\u00a8\u0006\f"}, d2 = {"Lcom/bytetrack/data/AppDatabase;", "Landroidx/room/RoomDatabase;", "()V", "drinkEntryDao", "Lcom/bytetrack/data/dao/DrinkEntryDao;", "foodDao", "Lcom/bytetrack/data/dao/FoodDao;", "foodEntryDao", "Lcom/bytetrack/data/dao/FoodEntryDao;", "userProfileDao", "Lcom/bytetrack/data/dao/UserProfileDao;", "Companion", "app_debug"})
-@androidx.room.Database(entities = {com.bytetrack.data.model.Food.class, com.bytetrack.data.model.FoodEntry.class, com.bytetrack.data.model.DrinkEntry.class, com.bytetrack.data.model.UserProfile.class}, version = 1, exportSchema = false)
+@kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\b\'\u0018\u0000 \r2\u00020\u0001:\u0001\rB\u0005\u00a2\u0006\u0002\u0010\u0002J\b\u0010\u0003\u001a\u00020\u0004H&J\b\u0010\u0005\u001a\u00020\u0006H&J\b\u0010\u0007\u001a\u00020\bH&J\b\u0010\t\u001a\u00020\nH&J\b\u0010\u000b\u001a\u00020\fH&\u00a8\u0006\u000e"}, d2 = {"Lcom/bytetrack/data/AppDatabase;", "Landroidx/room/RoomDatabase;", "()V", "drinkEntryDao", "Lcom/bytetrack/data/dao/DrinkEntryDao;", "foodDao", "Lcom/bytetrack/data/dao/FoodDao;", "foodEntryDao", "Lcom/bytetrack/data/dao/FoodEntryDao;", "goalHistoryDao", "Lcom/bytetrack/data/dao/GoalHistoryDao;", "userProfileDao", "Lcom/bytetrack/data/dao/UserProfileDao;", "Companion", "app_debug"})
+@androidx.room.Database(entities = {com.bytetrack.data.model.Food.class, com.bytetrack.data.model.FoodEntry.class, com.bytetrack.data.model.DrinkEntry.class, com.bytetrack.data.model.UserProfile.class, com.bytetrack.data.model.GoalHistory.class}, version = 2, exportSchema = false)
 @androidx.room.TypeConverters(value = {com.bytetrack.utils.Converters.class})
 public abstract class AppDatabase extends androidx.room.RoomDatabase {
     @kotlin.jvm.Volatile()
     @org.jetbrains.annotations.Nullable()
     private static volatile com.bytetrack.data.AppDatabase INSTANCE;
+    @org.jetbrains.annotations.NotNull()
+    private static final androidx.room.migration.Migration MIGRATION_1_2 = null;
     @org.jetbrains.annotations.NotNull()
     public static final com.bytetrack.data.AppDatabase.Companion Companion = null;
     
@@ -26,7 +28,10 @@ public abstract class AppDatabase extends androidx.room.RoomDatabase {
     @org.jetbrains.annotations.NotNull()
     public abstract com.bytetrack.data.dao.UserProfileDao userProfileDao();
     
-    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\u001c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0086\u0003\u0018\u00002\u00020\u0001:\u0001\bB\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u000e\u0010\u0005\u001a\u00020\u00042\u0006\u0010\u0006\u001a\u00020\u0007R\u0010\u0010\u0003\u001a\u0004\u0018\u00010\u0004X\u0082\u000e\u00a2\u0006\u0002\n\u0000\u00a8\u0006\t"}, d2 = {"Lcom/bytetrack/data/AppDatabase$Companion;", "", "()V", "INSTANCE", "Lcom/bytetrack/data/AppDatabase;", "getDatabase", "context", "Landroid/content/Context;", "DatabaseCallback", "app_debug"})
+    @org.jetbrains.annotations.NotNull()
+    public abstract com.bytetrack.data.dao.GoalHistoryDao goalHistoryDao();
+    
+    @kotlin.Metadata(mv = {1, 9, 0}, k = 1, xi = 48, d1 = {"\u0000\"\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\b\u0086\u0003\u0018\u00002\u00020\u0001:\u0001\nB\u0007\b\u0002\u00a2\u0006\u0002\u0010\u0002J\u000e\u0010\u0007\u001a\u00020\u00042\u0006\u0010\b\u001a\u00020\tR\u0010\u0010\u0003\u001a\u0004\u0018\u00010\u0004X\u0082\u000e\u00a2\u0006\u0002\n\u0000R\u000e\u0010\u0005\u001a\u00020\u0006X\u0082\u0004\u00a2\u0006\u0002\n\u0000\u00a8\u0006\u000b"}, d2 = {"Lcom/bytetrack/data/AppDatabase$Companion;", "", "()V", "INSTANCE", "Lcom/bytetrack/data/AppDatabase;", "MIGRATION_1_2", "Landroidx/room/migration/Migration;", "getDatabase", "context", "Landroid/content/Context;", "DatabaseCallback", "app_debug"})
     public static final class Companion {
         
         private Companion() {

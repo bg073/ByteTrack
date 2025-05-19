@@ -4,14 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -29,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -40,13 +35,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bytetrack.R
 import com.bytetrack.ui.BarcodeScannerActivity
 import com.bytetrack.ui.FoodDetailsActivity
+import com.bytetrack.ui.theme.*
 import com.bytetrack.ui.viewmodels.LogFoodViewModel
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun LogFoodScreen(
     modifier: Modifier = Modifier,
@@ -58,6 +52,12 @@ fun LogFoodScreen(
     // State for showing the result dialog
     var showResultDialog by remember { mutableStateOf(false) }
     var scanResult by remember { mutableStateOf("") }
+    
+    // Animation state for staggered entrance
+    var startAnimation by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) {
+        startAnimation = true
+    }
     
     val barcodeScannerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
@@ -105,101 +105,162 @@ fun LogFoodScreen(
                     .verticalScroll(rememberScrollState()),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Header section
-                Text(
-                    text = "How would you like to add food?",
-                    style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(vertical = 24.dp)
-                )
+                // Header section with animated entrance
+                AnimatedVisibility(
+                    visible = startAnimation,
+                    enter = fadeIn(
+                        animationSpec = tween(
+                            durationMillis = AnimationDuration.MEDIUM,
+                            easing = StandardEasing
+                        )
+                    ) + expandIn(
+                        animationSpec = tween(
+                            durationMillis = AnimationDuration.MEDIUM,
+                            easing = StandardEasing
+                        ),
+                        expandFrom = Alignment.TopCenter
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = "How would you like to add food?",
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        modifier = Modifier.padding(vertical = 24.dp)
+                    )
+                }
                 
-                // Barcode scanning option
-                LogFoodOptionCard(
-                    title = "Scan Barcode",
-                    description = "Quickly scan a product barcode to add food",
-                    icon = Icons.Default.QrCodeScanner,
-                    iconTint = MaterialTheme.colorScheme.primary,
-                    onClick = {
+                Spacer(modifier = Modifier.height(8.dp))
+                
+                // Staggered animation for options
+                val options = listOf(
+                    Triple(
+                        "Scan Barcode", 
+                        "Quickly scan a product barcode to add food", 
+                        Icons.Default.QrCodeScanner to MaterialTheme.colorScheme.primary
+                    ) to {
                         val intent = Intent(context, BarcodeScannerActivity::class.java)
                         barcodeScannerLauncher.launch(intent)
-                    }
-                )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                // Photo recognition option
-                LogFoodOptionCard(
-                    title = "Take Photo",
-                    description = "Take a photo of your food for recognition",
-                    icon = Icons.Default.PhotoCamera,
-                    iconTint = Color(0xFF4CAF50),
-                    onClick = {
-                        // TODO: Implement photo recognition
-                    }
-                )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                // Manual entry option
-                LogFoodOptionCard(
-                    title = "Search Food Database",
-                    description = "Search our extensive food database",
-                    icon = Icons.Default.Search,
-                    iconTint = Color(0xFF2196F3),
-                    onClick = {
+                    },
+                    Triple(
+                        "Take Photo", 
+                        "Take a photo of your food for recognition", 
+                        Icons.Default.PhotoCamera to Color(0xFF4CAF50)
+                    ) to {
+                        // TODO: Implement photo recognition 
+                    },
+                    Triple(
+                        "Search Food Database", 
+                        "Search our extensive food database", 
+                        Icons.Default.Search to Color(0xFF2196F3)
+                    ) to {
                         // TODO: Implement manual entry
-                    }
-                )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                // Custom food entry
-                LogFoodOptionCard(
-                    title = "Custom Food Entry",
-                    description = "Create a custom food with nutrition info",
-                    icon = Icons.Default.Add,
-                    iconTint = Color(0xFFFF9800),
-                    onClick = {
+                    },
+                    Triple(
+                        "Custom Food Entry", 
+                        "Create a custom food with nutrition info", 
+                        Icons.Default.Add to Color(0xFFFF9800)
+                    ) to {
                         // TODO: Implement custom food entry
                     }
                 )
                 
+                options.forEachIndexed { index, (optionData, onClick) ->
+                    val (title, description, iconData) = optionData
+                    val (icon, iconTint) = iconData
+                    
+                    AnimatedVisibility(
+                        visible = startAnimation,
+                        enter = fadeIn(
+                            animationSpec = tween(
+                                durationMillis = AnimationDuration.MEDIUM,
+                                delayMillis = 100 + (index * 50),
+                                easing = StandardEasing
+                            )
+                        ) + slideInVertically(
+                            animationSpec = tween(
+                                durationMillis = AnimationDuration.MEDIUM,
+                                delayMillis = 100 + (index * 50),
+                                easing = StandardEasing
+                            ),
+                            initialOffsetY = { it / 2 }
+                        ),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        AnimatedLogFoodOptionCard(
+                            title = title,
+                            description = description,
+                            icon = icon,
+                            iconTint = iconTint,
+                            onClick = onClick,
+                            index = index
+                        )
+                        
+                        if (index < options.size - 1) {
+                            Spacer(modifier = Modifier.height(16.dp))
+                        }
+                    }
+                }
+                
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                // Recent foods section
-                Card(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f)
-                    )
+                // Recent foods section with animated entrance
+                AnimatedVisibility(
+                    visible = startAnimation,
+                    enter = fadeIn(
+                        animationSpec = tween(
+                            durationMillis = AnimationDuration.MEDIUM,
+                            delayMillis = 100 + (options.size * 50),
+                            easing = StandardEasing
+                        )
+                    ) + slideInVertically(
+                        animationSpec = tween(
+                            durationMillis = AnimationDuration.MEDIUM,
+                            delayMillis = 100 + (options.size * 50),
+                            easing = StandardEasing
+                        ),
+                        initialOffsetY = { it / 2 }
+                    ),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.7f)
+                        )
                     ) {
-                        Text(
-                            text = "Recent Foods",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
-                        )
-                        
-                        Spacer(modifier = Modifier.height(8.dp))
-                        
-                        Text(
-                            text = "Your recently logged foods will appear here for quick access",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp)
+                        ) {
+                            Text(
+                                text = "Recent Foods",
+                                style = MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold
+                            )
+                            
+                            Spacer(modifier = Modifier.height(8.dp))
+                            
+                            Text(
+                                text = "Your recently logged foods will appear here for quick access",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                            )
+                        }
                     }
                 }
             }
         }
         
         // Show result dialog when barcode is scanned
-        if (showResultDialog) {
+        AnimatedVisibility(
+            visible = showResultDialog,
+            enter = enterFromBottomTransition(),
+            exit = exitToBottomTransition()
+        ) {
             BarcodeResultDialog(
                 barcode = scanResult,
                 onDismiss = { showResultDialog = false },
@@ -218,24 +279,21 @@ fun LogFoodScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LogFoodOptionCard(
+fun AnimatedLogFoodOptionCard(
     title: String,
     description: String,
     icon: ImageVector,
     iconTint: Color,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    index: Int
 ) {
+    val coroutineScope = rememberCoroutineScope()
     val scale = remember { mutableStateOf(1f) }
     val animatedScale by animateFloatAsState(
         targetValue = scale.value,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        ),
-        label = "scale"
+        animationSpec = buttonClickAnimationSpec(),
+        label = "scaleAnimation"
     )
-    
-    val coroutineScope = rememberCoroutineScope()
     
     Card(
         modifier = Modifier
@@ -321,12 +379,25 @@ fun BarcodeResultDialog(
                     .padding(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                // Success icon
+                // Animated success icon
+                val pulseAnimation = remember { Animatable(1f) }
+                LaunchedEffect(pulseAnimation) {
+                    pulseAnimation.animateTo(
+                        targetValue = 1.2f,
+                        animationSpec = pulseAnimationSpec()
+                    )
+                }
+                
                 Icon(
                     imageVector = Icons.Default.CheckCircle,
                     contentDescription = "Success",
                     tint = Color(0xFF4CAF50),
-                    modifier = Modifier.size(64.dp)
+                    modifier = Modifier
+                        .size(64.dp)
+                        .graphicsLayer {
+                            scaleX = pulseAnimation.value
+                            scaleY = pulseAnimation.value
+                        }
                 )
                 
                 Spacer(modifier = Modifier.height(16.dp))
