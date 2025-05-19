@@ -1,0 +1,3 @@
+com.bytetrack.test
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme
